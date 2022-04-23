@@ -64,5 +64,5 @@ expohi = ggplot(test, aes(HDI, B)) +
   ylab("Global One Health Intrinsic Drivers Index scores")+
   theme_test() 
 
-ggsave("HDI-IDI-region.tiff", units="in", width=8, height=4, dpi=600, compression = 'lzw')
+ggsave("HDI-IDI-region.pdf", width=8, height=4, dpi=600)
 

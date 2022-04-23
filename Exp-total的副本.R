@@ -8,21 +8,23 @@ library(ggrepel)
 
 #Exp <- read_excel("Exp.xlsx")
 
-#dftest <- read_csv("IDI_last version.csv")
+#dftest <- read_csv("total_0228_last Version.csv")
 
-#data = left_join(dftest,Exp, by = "country")
+#data = left_join(dftest,Exp, by = "iso")
 
-#write.csv(data,file = "exp.csv")
+#write.csv(data,file = "exp-OHI.csv")
 
-data <- read_csv("HDI-B.csv")
+#data <- read_csv("HDI-B.csv")
+
+data <- read_csv("exp-OHI.csv")
 
 test <- data %>%
   mutate(
     region = case_when(
-      region == "Middle East and North Africa" ~ "Middle East\nand North Africa",
-      region == "Europe and Central Asia" ~ "Europe and\nCentral Asia",
-      region == "East Asia and Pacific" ~ "East Asia and\n Pacific",
-      region == "Latin America and The Caribbean" ~ "Latin America and\n The Caribbean",
+      region == "Middle East and North Africa" ~ "Middle East and North Africa",
+      region == "Europe and Central Asia" ~ "Europe and Central Asia",
+      region == "East Asia and Pacific" ~ "East Asia and Pacific",
+      region == "Latin America and The Caribbean" ~ "Latin America and The Caribbean",
       region == "North America" ~ "North America",
       region == "South Asia" ~ "South Asia",
       region == "Sub-Saharan Arica" ~ "Sub-Saharan Arica",
@@ -42,7 +44,7 @@ test <- test %>%
   )
 
 
-expohi = ggplot(test, aes(HDI, B)) +
+expohi = ggplot(test, aes(exp, total)) +
   geom_smooth(method="lm", formula = 'y ~ poly(x,2)' , col="black") +
   geom_point(
     aes(color = region, fill = region),
@@ -60,9 +62,9 @@ expohi = ggplot(test, aes(HDI, B)) +
     max.overlaps = 1000,
     seed = 7654 # For reproducibility reasons
   ) +
-  xlab("HDI") +
+  xlab("Life Expectancy") +
   ylab("Global One Health Intrinsic Drivers Index scores")+
   theme_test() 
 
-ggsave("HDI-IDI-region.tiff", units="in", width=8, height=4, dpi=600, compression = 'lzw')
+ggsave("HDI-Expectancy-region.pdf", width=8, height=4, dpi=600)
 
