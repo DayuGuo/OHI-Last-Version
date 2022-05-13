@@ -48,7 +48,7 @@ cid=data %>%
     strip.text.x = element_text(size = 10),
     text = element_text(size = 10)
   ) +
-  xlab("Global One Health Index (GoHi) scores") +
+  xlab("Global One Health index (GOHI) scores") +
   ylab("Density")
 
 ggsave("cditest.pdf", units="in", width=8, height=4, dpi=600)
